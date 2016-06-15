@@ -1,5 +1,6 @@
 package com.example.andres.eventcapture;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -16,10 +17,14 @@ public class EventosActivity extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if(keyCode == EventsSave.getInstance().getPrimerEvento()){
-            Toast.makeText(this.getApplicationContext(), "Pulsador 1 pulsado", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, MyService.class);
+            intent.setAction(String.valueOf(keyCode));
+            startService(intent);
         }
         if(keyCode == EventsSave.getInstance().getSegundoEvento()){
-            Toast.makeText(this.getApplicationContext(), "Pulsador 2 pulsado", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, MyService.class);
+            intent.setAction(String.valueOf(keyCode));
+            startService(intent);
         }
 
         return super.onKeyDown(keyCode, event);
