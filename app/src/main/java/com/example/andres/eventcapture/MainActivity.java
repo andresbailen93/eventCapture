@@ -1,10 +1,12 @@
 package com.example.andres.eventcapture;
 
 import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,11 +21,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         primerEvento = (TextView) findViewById(R.id.primerEvento);
         segundoEvento = (TextView) findViewById(R.id.segundoEvento);
+
     }
 
     public void continuaActivity(View v){
         Intent intent = new Intent(this, EventosActivity.class);
         startActivity(intent);
+        this.finish();
+
     }
 
     @Override
