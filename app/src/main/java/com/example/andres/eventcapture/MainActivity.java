@@ -25,8 +25,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void continuaActivity(View v){
-        Intent intent = new Intent(this, EventosActivity.class);
-        startActivity(intent);
+        Intent intent = new Intent(android.provider.Settings.ACTION_ACCESSIBILITY_SETTINGS);
+        startActivityForResult(intent, 0);
+        Toast.makeText(getApplicationContext(),"Activa el servidio EventCapture Accesibility",Toast.LENGTH_SHORT).show();
         this.finish();
 
     }
@@ -36,13 +37,11 @@ public class MainActivity extends AppCompatActivity {
         count++;
         if(count == 1) {
             EventsSave.getInstance().setPrimerEvento(keyCode);
-            Toast.makeText(this.getApplicationContext(), String.valueOf(keyCode), Toast.LENGTH_SHORT).show();
             primerEvento.setText(String.valueOf(keyCode));
 
         }
         if(count == 2) {
             EventsSave.getInstance().setSegundoEvento(keyCode);
-            Toast.makeText(this.getApplicationContext(), String.valueOf(keyCode), Toast.LENGTH_SHORT).show();
             segundoEvento.setText(String.valueOf(keyCode));
         }
         return super.onKeyDown(keyCode, event);

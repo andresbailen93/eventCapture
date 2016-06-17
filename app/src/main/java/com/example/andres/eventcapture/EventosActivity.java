@@ -24,8 +24,6 @@ public class EventosActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        Intent intent = new Intent(this, MyService.class);
-        stopService(intent);
         super.onDestroy();
     }
 }

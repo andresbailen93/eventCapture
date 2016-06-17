@@ -33,8 +33,25 @@ public class AccessibilityService extends android.accessibilityservice.Accessibi
 
     @Override
     protected boolean onKeyEvent(KeyEvent event) {
-        Log.e("KeyEvent", "Key obtenido" + String.valueOf(event.getKeyCode()));
-        return true;
+        if(event.getAction() == KeyEvent.ACTION_DOWN) {
+            if(event.getKeyCode() == EventsSave.getInstance().getPrimerEvento()){
+                Log.e("KeyEvent", "Primer pulsador");
+                Intent intent = new Intent();
+                intent.setClassName("com.example.andres.receiver","com.example.andres.receiver.BackgroudService");
+                intent.setAction("pulsador 1");
+                this.sendBroadcast(intent);
+                return true;
+            }
+            if(event.getKeyCode() == EventsSave.getInstance().getSegundoEvento()){
+                Log.e("KeyEvent", "Segundo pulsador");
+                Intent intent = new Intent();
+                intent.setClassName("com.example.andres.receiver","com.example.andres.receiver.BackgroudService");
+                intent.setAction("pulsador 2");
+                this.sendBroadcast(intent);
+                return true;
+            }
+        }
+        return super.onKeyEvent(event);
         //return super.onKeyEvent(event);
     }
 
