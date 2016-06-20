@@ -10,6 +10,7 @@ import android.os.IBinder;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.View;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.Toast;
@@ -37,20 +38,27 @@ public class AccessibilityService extends android.accessibilityservice.Accessibi
         switch(eventType){
             case AccessibilityEvent.TYPE_VIEW_CLICKED:
                 Log.e("EVENT", "clicker " + event.getEventType());
-
+                break;
             case AccessibilityEvent.TYPE_VIEW_FOCUSED:
                 Log.e("EVENT", "type view focused " + event.getEventType());
                 AccessibilityNodeInfo source = event.getSource();
                 Log.e("FOCUS",String.valueOf(source.getText()));
-
+                if(source!=null){
+                    AccessibilityNodeInfo source2 = source.focusSearch(View.FOCUS_DOWN);
+                    if(source2!=null) {
+                        Log.e("FOCUS2", String.valueOf(source2.getText()));
+                    }
+                }
+                break;
             case AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED:
                 Log.e("EVENT", "Type view focused " + event.getEventType());
-
+                break;
             case AccessibilityEvent.TYPE_VIEW_ACCESSIBILITY_FOCUS_CLEARED:
                 Log.e("EVENT", "Type view FocusACcc");
-
+                break;
             case AccessibilityEvent.TYPE_VIEW_ACCESSIBILITY_FOCUSED:
                 Log.e("EVENT", "Type View FOCUSSED ACC");
+                break;
         }
     }
 
