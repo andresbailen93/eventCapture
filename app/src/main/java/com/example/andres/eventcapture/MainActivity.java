@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     public void continuaActivity(View v){
         Intent intent = new Intent(android.provider.Settings.ACTION_ACCESSIBILITY_SETTINGS);
         startActivityForResult(intent, 0);
-        Toast.makeText(getApplicationContext(),"Activa el servidio EventCapture Accesibility",Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(),"Activa el servicio EventCapture Accesibility",Toast.LENGTH_SHORT).show();
         this.finish();
 
     }
