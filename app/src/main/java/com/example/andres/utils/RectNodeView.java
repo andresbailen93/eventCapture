@@ -30,6 +30,7 @@ public class RectNodeView extends ViewGroup{
         r = new Rect();
         p = new Paint();
         canvas = new Canvas();
+        setWillNotDraw(false);
 //		Paint p= new Paint();
 
     }
@@ -49,72 +50,23 @@ public class RectNodeView extends ViewGroup{
     }
     @Override
     public void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
         this.canvas = canvas;
         Log.d("TamañoNodo","Estamos en el onDraw");
         Log.i("TamañoNodo","Alto R: " + getR().top + " ;Bajo R: " + getR().bottom +
                 " ;Izq R: " + getR().left + " ;Der R: " + getR().right);
-//		Paint p= new Paint();
-//		p.
-        try{
-            p.setColor(Color.parseColor(linecolor));
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        p.setStrokeWidth(widthstroke);
-        p.setStyle(Style.STROKE);
-//		p.setStyle(Style.FILL_AND_STROKE);
-//		p.setStyle(Style.FILL);
-//		p.setAlpha(int a);
-//		p.setStrokeCap(null);
-//		p.setStrokeJoin(null);
-//		p.setStrokeMiter();
-        //canvas.drawRect(getR(), p);
+
         Paint pq = new Paint();
         pq.setColor(Color.RED);
-        canvas.drawRect(getR(),pq);
+        canvas.drawRect(r,pq);
     }
 
 
     @SuppressLint("WrongCall")
     @Override
     protected void drawableStateChanged(){
-//		Log.d("TamañoNodo","En el DRAWABLESTATECHANGED");
-//		Log.i("RectNodeView","Alto R: " + getR().top + " ;Bajo R: " + getR().bottom +
-//				" ;Izq R: " + getR().left + " ;Der R: " + getR().right);
-//		p.setColor(Color.rgb(0, 0, 255));
-//		p.setStrokeWidth(10);
-//		p.setStyle(Style.STROKE);
-//		canvas.drawRect(getR(), p);
         onDraw(canvas);
+        super.drawableStateChanged();
 
-    }
-
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        Log.d("DetectandoBack","El BACK vale ---> " + keyCode);
-        // TODO Auto-generated method stub
-        return processKeyEvent (keyCode, event, true);
-//		return super.onKeyDown(keyCode, event);
-    }
-
-    @Override
-    public boolean onKeyUp(int keyCode, KeyEvent event) {
-        Log.d("DetectandoBack","El BACK vale ---> " + keyCode);
-        // TODO Auto-generated method stub
-        return processKeyEvent (keyCode, event, true);
-//		return super.onKeyUp(keyCode, event);
-    }
-
-
-    boolean processKeyEvent (int keycode, KeyEvent event, boolean down)
-    {
-
-        if(keycode == event.KEYCODE_BACK){
-            Toast.makeText(getContext(), "Función deshabilitada", Toast.LENGTH_SHORT).show();
-        }
-
-        return true;
     }
 
     public int getWidthstroke() {

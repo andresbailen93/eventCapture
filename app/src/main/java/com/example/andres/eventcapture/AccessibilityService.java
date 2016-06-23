@@ -141,8 +141,10 @@ public class AccessibilityService extends android.accessibilityservice.Accessibi
 
                         Rect rect = new Rect();
                         nextNode.getBoundsInScreen(rect);
+                        String id = nextNode.getViewIdResourceName();
 
                         rnv.setR(rect);
+                        rnv.refreshDrawableState();
                     }
                 }
 
@@ -163,6 +165,12 @@ public class AccessibilityService extends android.accessibilityservice.Accessibi
         return nextNode;
     }
 
+    @Override
+    protected void onServiceConnected() {
+        this.root = getRootInActiveWindow();
+        rnv = new RectNodeView(this);
+        firstAction = true;
+    }
 
     @Override
     public void onInterrupt() {
